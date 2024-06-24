@@ -29,18 +29,12 @@ function compile() {
   };
 }
 
+
 function setInitial(data) {
-  let htmlContent = data[0] || '<h1>Welcome to the Live Code Editor!</h1>';
+  let htmlContent = data[0] || '';
   let cssContent =
     data[1] ||
-    `body {
-    background-color: #222;
-    }
-    h1 {
-      color: #fff;
-      text-align: center;
-      margin-top: 10%;
-    }`;
+    ``;
   let jsContent = data[2] || '';
   css.value = cssContent;
   js.value = jsContent;
@@ -57,7 +51,6 @@ function setInitial(data) {
   );
   code.close();
 }
-
 compile();
 
 document.querySelectorAll('.control').forEach((control) =>
@@ -87,22 +80,10 @@ document.querySelectorAll('.copy-btn').forEach((copy) => {
   });
 });
 
-document.querySelector('.copy-html').addEventListener('click', (e) => {
-  const code = document.querySelector('#html');
-  copyCode(code);
-});
-
-document.querySelector('.copy-css').addEventListener('click', (e) => {
-  const code = document.querySelector('#css');
-  copyCode(code);
-});
-document.querySelector('.copy-js').addEventListener('click', (e) => {
-  const code = document.querySelector('#js');
-  copyCode(code);
-});
-
-function copyCode(code) {
-  code.select();
-  document.execCommand('copy');
-  swal('Copied!', 'You are ready to rock', 'success');
-}
+document.addEventListener("keydown", function(event) {
+  // Verifica si se presionó Ctrl + U
+  if (event.ctrlKey && event.key === 'u') {
+      // Agrega o quita la clase 'ocultar-header' al body
+      document.body.classList.toggle('ocultar-header');
+  }
+}); 
